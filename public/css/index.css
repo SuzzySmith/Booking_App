@@ -1,0 +1,184 @@
+body {
+  margin-top: -2%;
+}
+
+h1 {
+    font-size: 70px;
+    line-height: 72px;
+    font-weight: 100;
+    margin: 0 0 30px 0;
+    color: rgb(255, 255, 255);
+  }
+  
+  h2 {
+    font-size: 110px;
+    line-height: 132px;
+    margin: 0 0 30px 0;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+  }
+  h4 {
+    font-family: 'Hind', 'sans-serif';
+    padding-left: 10%;
+    font-size: 17px;
+    line-height: 25.5px;
+    margin: 0 0 30px 0;
+    font-weight: 100;
+    color: rgb(85, 85, 85);
+    
+  }
+
+  body {
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 17px;
+    font-weight: lighter;
+    
+  }
+
+  
+  
+ 
+  
+  header {
+    padding-top: 150px;
+    padding-bottom: 150px;
+    position: relative;
+   
+    /* z-index: 1; */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  
+
+  /* .nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: pink;
+    margin-top: -2%;
+  } */
+  
+  .nav-item {
+    margin-left: 5rem;
+    font-size: 10px;
+  }
+  
+  .nav-link{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #222020;
+  }
+  
+  nav {
+    /* float: left; */
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 19px;
+    color: pink;
+  }
+  nav li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+    list-style: none;
+   
+  }
+  
+  nav ul {
+    float: left;
+    display: flex;
+    text-indent: 25px;
+    list-style: none;
+    gap: 0.2em;
+    padding: 5px;
+    margin-top: -6%;
+    color: rgb(219, 71, 96);
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    outline: 0;
+    color: red;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    /* text-transform: uppercase; */
+    text-size-adjust: 5px;
+  }
+  
+
+
+  /* footer */
+
+  footer {
+    color: rgb(136, 135, 135);
+    background-color: rgb(26, 24, 24);
+    padding-top: 20px;
+    padding-left: 20px
+  }
+  
+  .details {
+    color: white;
+  }
+  
+   ul {
+    display: flex;
+  }
+  
+  .socials i {
+    display: flex;
+    flex-direction: column;
+    width: 5vh;
+    color: rgb(97, 94, 94);
+  }
+  .socials i {
+    display: flex;
+    flex-direction: row;
+    /* display: inline-block; */
+    font-size: 20px;
+    /* padding: 20px; */
+  
+  }
+  
+  
+  footer .logo {
+    width: 3%;
+    padding-left: 9%;
+    padding-top: 40px;
+  }
+  .soc{
+    margin-top: -2%;
+    margin-left: 55%;
+    padding-bottom: 2%;
+  }
+  .editContent {
+    padding-top: -3px;
+    
+  }
+  
+  /* .booking {
+    background-image: url('../assets/girl.jpg');
+    width: auto;
+    /* height: auto; */
+/* } */ 
+
+/* //.logo */
+nav img{
+  margin-top: -1.5%;
+  width: 6%;
+  height: 6%;
+}

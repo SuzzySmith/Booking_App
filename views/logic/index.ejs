@@ -1,0 +1,41 @@
+<h1>Logic test</h1>
+
+<div class="add"> 
+    <a href="logic/add"> Add Logic </a>
+</div>
+
+<div class="logic">
+    <ul>
+    <% if (typeof navigations != 'undefined') { %>
+        <%   navigations.forEach(nav => {  %>
+
+            <li>
+                <a href="<%= nav.path %>"><%= nav.name %></a>
+
+               <div><%= nav.date %></span>
+               <div>Desc: <%= nav.description %></>
+            </li>
+           
+           
+            <%   }) %>
+        <%   } %>
+</ul>
+</div>
+
+
+<style>
+    h1 {
+        color: black;
+    }
+
+   .logic ul {
+        color: black;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .logic a {
+        padding-top: 20px;
+        font-weight: bolder;
+    }
+</style>

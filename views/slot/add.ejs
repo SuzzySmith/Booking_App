@@ -1,0 +1,95 @@
+
+
+<div class="slot">
+    <form form" id="comment-form" action="/slots/add" method="post" id="comment-form" style="width:500px;">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+    <h4>SLOT 
+        <br>
+        <span class="quan"> Select the date and the quantity of slot available</span>
+    </h4>
+            
+        <div >
+            <div  >
+                <label for="slot-date"> Quantity of Slot </label>
+                <br>
+                <input  type="quantity"  id="quantity" name="quantity" placeholder="Enter available slots" style="color: rgba(230, 57, 57, 0.2);" required>
+            </div>
+
+            <div >
+                <label for="slot-date"> Slot Date</label>
+                <br>
+                <input  type="date"  id="slot_date" name="slot_date" placeholder="Enter your slot number" style="padding-left: 180px;color: rgba(0, 0, 0, 0.336);" required>
+            </div>
+
+          
+            
+            <div  >
+                <button  type="submit" value="submit"  style="font-size: 1rem;" class="py-2 btn btn-block btn-outline-success">Submit</button>
+            </div>
+   
+      </form> 
+</div>
+
+
+
+<style>
+    .slot {
+        margin-top: 2%;
+        background-image: url('/assets/bs.jpg');
+        background-attachment: relative; 
+         background-repeat: no-repeat; 
+        background-size: cover;
+        width: 100%;
+        height: 80vh;
+        font-size: 25px;
+        line-break: 15px;
+        
+     } 
+     .slot div {
+         margin-top: 5%;
+     }
+     form{
+        margin-left: 5%;
+        padding-top: 3%;
+        /* padding: 25px 17px; */
+        /* text-align: center; */
+    }
+    h4 {
+        font-weight: 400;
+        font-size: 170%;
+        line-height: 30px;
+        margin-left: -10%;
+      
+    }
+    span {
+        font-weight: 100;
+        font-size: 50%;
+        text-align: center;
+        margin-top: 2%;
+        margin-left: 1%;
+        
+      
+    }
+
+    button{
+        font-size: larger;
+        margin-top: 3%;
+        background-color: rgb(230, 40, 81);
+        border-radius: 1em;
+        padding: 35px 12px;
+        box-shadow: 0 8px 12px 0 rgba(44, 43, 43, 0.2), 0 9px 23px 0 rgba(0, 0, 0, 0.19);
+        transition: 0.2s ease-in-out;
+        width: 25%;
+        color: rgb(250, 249, 249);
+    }
+    button:hover {
+       color: rgb(230, 40, 81);
+       background-color: white;
+    }
+    /* input {
+        padding-left: 30%;
+    } */
+
+
+
+</style>
