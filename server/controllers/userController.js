@@ -2,16 +2,21 @@ const router = require('express').Router();
 
 const User = require('../model/User');
 
-exports.index = async (req, res) => {
-  
-    res.render('users/index', {title: "Users"})
-     
-}
 
 exports.index = async (req, res) => {
-  
-    res.render('users/index', {title: "Users"})
-     
+    res.render('users/index', {title: "Users"})    
+}
+
+exports.login = async (req, res) => {
+    res.render('user/login', {title: "Add User"})
+}
+
+exports.authenticate= async (req, res) => {
+    res.render('user/login', {title: "Add User"})
+}
+
+exports.profile = async (req, res) => {
+    res.render('user/index', {title: "User"})
 }
 
 exports.edit = async (req, res) => {
