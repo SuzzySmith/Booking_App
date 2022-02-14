@@ -8,15 +8,15 @@ exports.index = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    res.render('user/login', {title: "Add User"})
+    res.render('user/login', {title: "Login"})
 }
 
 exports.authenticate= async (req, res) => {
-    res.render('user/login', {title: "Add User"})
+    res.render('user/login', {title: "Login"})
 }
 
 exports.profile = async (req, res) => {
-    res.render('user/index', {title: "User"})
+    res.render('user/index', {title: "User Profile"})
 }
 
 exports.edit = async (req, res) => {
