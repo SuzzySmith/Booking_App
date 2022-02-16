@@ -6,8 +6,8 @@ const controller = require("../controllers/userController");
 const User = require("../model/User");
 passport.use(
   new LocalStrategy(async function verify(username, password, cb) {
-    const user = await User.findOne({ where: { username: username } });
-
+    const user = await User.findOne({ phone_number: username });
+console.log(user)
     if (user) {
       // if (user.password === password){
       return cb(null, user); // verification successful
@@ -24,7 +24,7 @@ passport.use(
      next();
     } 
     else {
-     res.render("/users/login" );
+     res.redirect("/users/login" );
   }
  };
 
@@ -39,7 +39,6 @@ passport.deserializeUser(function (user, cb) {
   return cb(null, user);
 });
 
-router.use(checkAuthentication);
 router.get("/", controller.index);
 //
 router.get("/users/login", controller.login);
@@ -49,6 +48,8 @@ router.post(
   passport.authenticate("local", { failureRedirect: "/users/login" }),
   controller.authenticate
 );
+
+router.use(checkAuthentication);
 
 //
 router.get("/users/profile", controller.profile);

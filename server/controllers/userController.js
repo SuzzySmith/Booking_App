@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
 }
 
 exports.authenticate= async (req, res) => {
-    res.render('user/profile', {title: "Login"})
+    res.redirect('/users/profile')
 }
 
 
