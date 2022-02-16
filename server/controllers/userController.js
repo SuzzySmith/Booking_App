@@ -12,11 +12,12 @@ exports.login = async (req, res) => {
 }
 
 exports.authenticate= async (req, res) => {
-    res.render('user/login', {title: "Login"})
+    res.render('user/profile', {title: "Login"})
 }
 
+
 exports.profile = async (req, res) => {
-    res.render('user/index', {title: "User Profile"})
+    res.render('user/profile', {title: "User Profile"})
 }
 
 exports.edit = async (req, res) => {

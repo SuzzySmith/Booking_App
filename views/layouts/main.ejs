@@ -18,6 +18,9 @@
 
   <body>
   
+    <% if (typeof isAuthenticated !== 'undefined' && isAuthenticated){ %>
+
+    
     <nav>
       <a href="/" class="nav-logo"><img src="/./assets/logo.png"></a>
   
@@ -34,6 +37,8 @@
       </ul>
   
   </nav>
+
+<% } %>
 
     <main><%- body %></main>
 
