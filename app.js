@@ -4,11 +4,11 @@ const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8059
-const passport = require('passport');
-const passportLocal = require('passport-local');
+// const passport = require('passport');
+// const passportLocal = require('passport-local');
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
-
+const flash = require('express-flash')
 
 require("./server/model/AppModel")
 
@@ -18,7 +18,7 @@ app.use(cors())
 app.use(express.static('public'));
 app.use(expressLayouts);
 app.use(express.urlencoded({extended:true}));
-
+app.use(flash())
 app.use(session({
     secret: process.env.SECRET,
     resave: true,
@@ -60,12 +60,13 @@ const csrfCheck = function (req,res, next){
 app.use(csrfCheck)
 
 //routes
+app.use('/', user);
 app.use('/', route);
 app.use('/', booking);
 app.use('/', failedBooking);
 app.use('/', slot);
 app.use('/', logic);
-app.use('/', user);
+
 
 app.use('*', (req,res) => {
   res.render('error/index', { root: __dirname, title : 'Error'})

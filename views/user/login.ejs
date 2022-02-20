@@ -1,10 +1,12 @@
 
 
 <div class="book">
-
+    <% //if (message.error) {%> 
+        <%= //message.error %>
+        <% //} %> 
 <form form" id="comment-form" action="" method="post" id="comment-form" style="width:500px;">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
-
+    <div class="errror"></div>
         
     <div >
          <div class="name" >

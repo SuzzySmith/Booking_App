@@ -11,6 +11,11 @@ exports.login = async (req, res) => {
     res.render('user/login', {title: "Login"})
 }
 
+exports.logout = async (req, res) => {
+    req.logout()
+    res.redirect('user/login')
+}
+
 exports.authenticate= async (req, res) => {
     res.redirect('/users/profile')
 }
