@@ -22,12 +22,15 @@
 
     <nav>
       <a href="/" class="nav-logo"><img src="/./assets/logo.png"></a>
-  
       <ul class=" nav-menu " >
-          <li class="nav-item" ><a href="/" class="nav-link">Home</a></li>
+        <% if (typeof user !== 'undefined' && user.role.toLowerCase() === 'user') {%> 
+         <li class="nav-item" ><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="/bookings" class="nav-link">Bookings</a></li>
-          <li class="nav-item"><a href="/slots" class="nav-link">Slot Available</a></li>
+          <% } else { %> 
+             <li class="nav-item"><a href="/slots" class="nav-link">Slot Available</a></li>
           <li class="nav-item"><a href="/failedbookings" class="nav-link">Failed Bookings </a></li>
+
+                 <% } %> 
           <!-- <li class="nav-item"><a href="/logic " class="nav-link">Logic</a></li> -->
           <li class="nav-item"><a href="/users/logout " class="nav-link">Logout</a></li>
 

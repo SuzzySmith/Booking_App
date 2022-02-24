@@ -4,34 +4,46 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const controller = require("../controllers/userController");
 const User = require("../model/User");
-// const bcrypt = require('bcrypt')
-
+const ExpressBrute = require("express-brute");
 
 passport.use(
-  new LocalStrategy(async function verify(username, password, cb) {
+  new LocalStrategy({passReqToCallback : true}, 
+    async function verify(req, username, password, cb) {
     const user = await User.findOne({ phone_number: username });
-    console.log(user);
     if (user) {
-      // if (user.password === password){
-      return cb(null, user ); // verification successful
-      // }
+      if (user.blocked) {
+        // if (user.password === password){
+        return cb(null, user); // verification successful
+        // }
+      } else {
+        return cb(null, false, {
+          message: "Your account has been deactivated",
+        }); // verification failed
+      }
     }
-    return cb(null, false, {message: 'No user with that phone number'}); // verification failed
-    // alert("No Login Attempts Available");
+    loginTracker(req, user);
+    return cb(null, false, { message: "No user with that phone number" }); // verification failed
   })
 );
 
 const checkAuthentication = (req, res, next) => {
   res.locals.isAuthenticated = false;
   res.locals.whitelisted = false;
+
   if (req.path === "/") {
     res.locals.whitelisted = true;
-  } 
+
+    if (req.isAuthenticated()) {
+      res.locals.isAuthenticated = true;
+    }
+  } else {
     if (req.isAuthenticated()) {
       res.locals.isAuthenticated = true;
     } else {
-      res.redirect("/users/login");
+      return res.redirect("/users/login");
     }
+  }
+  res.locals.user = req.user || {};
   next();
 };
 
@@ -46,6 +58,23 @@ passport.deserializeUser(function (user, cb) {
   return cb(null, user);
 });
 
+const loginTracker = async (req, user) => {
+
+  if (!req.session.maxFailedAttempts) {
+    req.session.maxFailedAttempts = 3;
+  } else {
+    req.session.maxFailedAttempts -= 1;
+
+    const maxFailedAttempts = req.session.maxFailedAttempts;
+    if (maxFailedAttempts <= 1) {
+      user.blocked = false;
+      await user.save();
+    }
+    console.log(req.session);
+  }
+};
+
+
 // router.get("/", controller.index);
 //
 router.get("/users/login", controller.login);
@@ -53,11 +82,10 @@ router.get("/users/logout", controller.logout);
 
 router.post(
   "/users/login",
-  passport.authenticate("local",{
-    failureRedirect: "/users/login" ,
+  passport.authenticate("local", {
+    failureRedirect: "/users/login",
     failureFlash: true,
-   
-} ),
+  }),
   controller.authenticate
 );
 // req.flash("error")

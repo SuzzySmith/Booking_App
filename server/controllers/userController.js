@@ -4,11 +4,12 @@ const User = require('../model/User');
 
 
 exports.index = async (req, res) => {
-    res.render('users/index', {title: "Users"})    
+    res.render('users/index', {title: "Users" })    
 }
 
 exports.login = async (req, res) => {
-    res.render('user/login', {title: "Login"})
+    const message = req.flash().error
+    res.render('user/login', {title: "Login", message})
 }
 
 exports.logout = async (req, res) => {
