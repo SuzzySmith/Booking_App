@@ -7,8 +7,12 @@ const User = require("../model/User");
 const ExpressBrute = require("express-brute");
 
 passport.use(
-  new LocalStrategy({passReqToCallback : true}, 
-    async function verify(req, username, password, cb) {
+  new LocalStrategy({ passReqToCallback: true }, async function verify(
+    req,
+    username,
+    password,
+    cb
+  ) {
     const user = await User.findOne({ phone_number: username });
     if (user) {
       if (user.blocked) {
@@ -21,6 +25,7 @@ passport.use(
         }); // verification failed
       }
     }
+    userNav(req, user);
     loginTracker(req, user);
     return cb(null, false, { message: "No user with that phone number" }); // verification failed
   })
@@ -47,6 +52,35 @@ const checkAuthentication = (req, res, next) => {
   next();
 };
 
+const userNav = (req, res, next) => {
+  console.log(req)
+  res.locals.user = req.user || {};
+  let nav = [{ href: "/", name: "Home" }];
+
+  if (req.user) {
+    if (req.user.role == "user") {
+      let userNav = { href: "/bookings", name: "`bookking`" };
+      nav.push(userNav);
+    } else {
+      let adminNav = [
+        {
+          href: "/booking",
+          name: "Booking",
+        },
+        { href: "/slots", name: "Slots" },
+      ];
+      nav = nav.concat(adminNav);
+    }
+  }
+  if (req.isAuthenticated()) {
+    nav.push({ href: "/users/logout", name: "logout" });
+  } else {
+    nav.push({ href: "users/login", name: "login" });
+  }
+  res.locals.nav = nav;
+  next();
+};
+
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -59,7 +93,6 @@ passport.deserializeUser(function (user, cb) {
 });
 
 const loginTracker = async (req, user) => {
-
   if (!req.session.maxFailedAttempts) {
     req.session.maxFailedAttempts = 3;
   } else {
@@ -72,8 +105,8 @@ const loginTracker = async (req, user) => {
     }
     console.log(req.session);
   }
+  
 };
-
 
 // router.get("/", controller.index);
 //
@@ -90,6 +123,7 @@ router.post(
 );
 // req.flash("error")
 router.use(checkAuthentication);
+router.use(userNav)
 
 //
 router.get("/users/profile", controller.profile);
