@@ -8,7 +8,9 @@ const User = require("../model/User");
 
 // const bookingPerUser = (bookings) => {
 //   let display = ''
- 
+//   let id = req.params.user._id 
+//     // console.log(id)
+//        const user =  User.findById(id);
 //   if (bookings) {
 //     bookings.forEach((booking, index) => {
 //       if (user != booking.user._id) {
@@ -27,12 +29,13 @@ const User = require("../model/User");
 
 exports.index = async (req, res) => {
   const bookings = await Booking.find({})
-  // .populate(['user', 'slot'])
-  // .sort({ user: -1, slot: 1})
+  .populate(['user', 'slot'])
+  .sort({ user: -1, slot: 1})
+
 
   // let displayBooking = bookingPerUser(bookings);
  
-  res.render("booking/index", { title: "Booking", bookings });
+  res.render("booking/index", { title: "Booking", bookings});
 };
 
 exports.add = async (req, res) => {
@@ -82,11 +85,13 @@ exports.save = async (req, res) => {
       { _id: slot._id },
       { quantity: quantity }
     );
+
     if (!user.name) {
       res.render("booking/update_user", { title: "Update User", user });
     } else {
       res.render("booking/index");
-    }
+    } await user.save
+
   } else {
     const failedBooking = new FailedBooking({
       user: user._id,
@@ -119,6 +124,7 @@ exports.update = async (req, res) => {
   }else{
 
   }
+  console.log(req.body)
 
   res.render("booking/feedback", { title: "Booking"});
 };

@@ -10,7 +10,15 @@ const Schema = new mongoose.Schema ({
 
     password : {
         type : String
-    }
+    },
+    blocked : {
+        type : Boolean,
+        default : true
+    },
+    role : {
+        type : String,
+        default : 'user'
+    } 
    
 
 })
